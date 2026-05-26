@@ -28,8 +28,10 @@ public class Producto {
     @Column(length=32) // La cadena de 32 de longitud es para almacenar la clave de la galería
     String fotos;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @DescriptionsList
+    Autor autor;
+
     @TextArea // Esto es para un texto grande, se usará un área de texto o equivalente
     String observaciones;
-
-
 }
