@@ -11,14 +11,14 @@ public class CalculadorSiguienteNumeroParaAnyo
     @Getter @Setter
     int anyo; // Este valor se inyectará antes de calcular
 
-    public Object calculate() throws Exception { // Hace el cálculo
-        Query query = XPersistence.getManager() // Una consulta JPA
-                .createQuery("select max(f.numero) from Factura f where f.anyo = :anyo"); // La consulta devuelve
-        // el número de factura máximo del año indicado
-        query.setParameter("anyo", anyo); // Ponemos el año inyectado como parámetro de la consulta
+    public Object calculate() throws Exception {
+        Query query = XPersistence.getManager().createQuery(
+                "select max(f.numero) from " +
+                        "DocumentoComercial f " +
+                        "where f.anyo = :anyo");
+        query.setParameter("anyo", anyo);
         Integer ultimoNumero = (Integer) query.getSingleResult();
-        return ultimoNumero == null ? 1 : ultimoNumero + 1; // Devuelve el último número
-        // de factura del año + 1 o 1 si no hay último número
+        return ultimoNumero == null ? 1 : ultimoNumero + 1;
     }
 
 }
