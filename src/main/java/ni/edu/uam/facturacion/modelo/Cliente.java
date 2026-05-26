@@ -6,6 +6,9 @@ import lombok.*;
 
 @Entity
 @Getter @Setter
+@View(name="Simple", // Esta vista solo se usará cuando se especifique ?Simple?
+        members="numero, nombre" // Muestra únicamente numero y nombre en la misma línea
+)
 public class Cliente {
     @Id  // La propiedad numero es la clave.  Las claves son obligatorias (required) por defecto
     @Column(length=6)  // La longitud de columna se usa a nivel UI y a nivel DB
