@@ -11,6 +11,12 @@ import org.openxava.calculators.*;
 import lombok.*;
 
 @Entity @Getter @Setter
+@View(members= // Esta vista no tiene nombre, por tanto será la vista usada por defecto
+        "anyo, numero, fecha;" + // Separados por coma significa en la misma línea
+                "cliente;" + // Punto y coma significa nueva línea
+                "detalles;" +
+                "observaciones"
+)
 public class Factura {
 
     @Id
@@ -35,13 +41,13 @@ public class Factura {
     @DefaultValueCalculator(CurrentLocalDateCalculator.class) // Fecha actual
     LocalDate fecha;
 
-    @TextArea
-    String observaciones;
-
     @ManyToOne(fetch=FetchType.LAZY, optional=false) // El cliente es obligatorio
     Cliente cliente;
 
     @ElementCollection
     @ListProperties("producto.numero, producto.descripcion, cantidad")
     Collection<Detalle> detalles;
+
+    @TextArea
+    String observaciones;
 }
