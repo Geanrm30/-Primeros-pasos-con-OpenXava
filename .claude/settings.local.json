@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pg_isready)",
+      "PowerShell(Get-Service *)"
+    ]
+  }
+}
